@@ -43,10 +43,10 @@ $(document).ready(function () {
     var answerImage = $("#answer-box");
 
     var questionDisplay = $("#question");
-    var optionA = $("option-a");
-    var optionB = $("option-b");
-    var optionC = $("option-c");
-    var optionD = $("option-d");
+    var choiceA = $("#option-a");
+    var choiceB = $("#option-b");
+    var choiceC = $("#option-c");
+    var choiceD = $("#option-d");
 
     var questionTimer;
 
@@ -80,7 +80,13 @@ $(document).ready(function () {
     function questionFunction(x) {
 
         startTimer();
+        questionDisplay.html(questions[x].question);
+        choiceA.html(questions[x].optionA);
+        choiceB.html(questions[x].optionB);
+        choiceC.html(questions[x].optionC);
+        choiceD.html(questions[x].optionD);
 
+        console.log(questions[x].optionA);
 
         questionTimer = setTimeout(function () {
             console.log(questions[x].answer, count);
