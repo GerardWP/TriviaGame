@@ -204,5 +204,12 @@ $(document).ready(function () {
 
     trivia();
 
+    /*  I ended up having a problem with the way I was incrementing x. I definitely left this far too late. Won't be making that mistake again.
+    The game does not work properly, it doesnt finish correctly. Apologies on the messy code also, not really good enough. 
+    My last commit was before Midnight, though it was submitted slightly late. 
+    I think my main problem here, aside from the terrible time managment, was my poor psuedo coding. I feel I am
+    still struggling with proberly visualising the problem on a larger scale. Breaking it down into smaller
+    problems is one thing, but getting them all to work together nicely in another, definitely an area I am going to work hard
+    on improving it. Cheers */
 
 });
