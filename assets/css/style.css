@@ -129,6 +129,71 @@ button#next-question {
     /* opacity: .5; */
 }
 
+
+
+.qTwoImage {
+    background: url(../images/vatican.jpg) no-repeat center top !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+
+
+.qThreeImage {
+    background: url(../images/the-duke.jpg) no-repeat left bottom !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+
+
+.qFourImage {
+    background: url(../images/iceland-names.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+
+.qFiveImage {
+    background: url(../images/qatar.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+.qSixImage {
+    background: url(../images/russia.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+.qSevenImage {
+    background: url(../images/polar.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+.qEightImage {
+    background: url(../images/cheese.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+.qNineImage {
+    background: url(../images/indo.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+.qTenImage {
+    background: url(../images/olympics.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+
+
+
+
 @media(max-width: 800px) {
 
     body {
