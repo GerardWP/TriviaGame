@@ -70,15 +70,22 @@ $(document).ready(function () {
             correctOption: "United States",
             answer: "A: United States! The United States have hosted the Summer Olympic Games no less than four times! In 1904, 1932, 1984 & 1996"
         }
-    ]
+    ];
 
     var count = 0;
     var correctAnswers = 0;
 
-    // function for displaying countdown timer on document
+    var questionAnswered = false;
+    var timeLeft = 0;
+    var x = 0;
 
-    var timeLeft = 15;
+
+
+    // ---------------------
+
+    timeLeft = 15;
     var displayCountdown;
+
 
     function startTimer() {
         clearInterval(displayCountdown);
@@ -91,29 +98,53 @@ $(document).ready(function () {
 
         $("#display-number").html("<h2>" + timeLeft + "</h2>");
 
-        if (timeLeft === 0) {
+        if (timeLeft === 0 & questionAnswered === false) {
             clearInterval(displayCountdown);
-            timeLeft = 15;
-        }
+            timeLeft = 5;
+            $("#questions-display").empty();
+            x++
+        };
     };
 
-    // -------------------------------------------------
+    // startTimer()
+
+    // -------------------
+
+    function trivia() {
+
+        var possibleAnswers = questions[x].options;
+        var displayQuestion = $("<h2>");
+
+        $("#questions-display").append(displayQuestion.text(questions[x].question));
+
+        $("#option-a").text(questions[x].options[0])
+        $("#option-b").text(questions[x].options[1])
+        $("#option-c").text(questions[x].options[2])
+        $("#option-d").text(questions[x].options[3])
 
 
-    function questionFunction(x) {
+        // possibleAnswers.forEach(function (i) {
+        //     var answerButtons = $('<button id="buttonId">');
+        //     answerButtons.text(i).appendTo($("#questions-display"));
+        // });
 
-        var answers = questions[x].options;
+        // i tried the above code to generate my button text, and it worked, but the cick function would NOT respond to the buttons.
 
-        answers.forEach(function (i) {
-            console.log(i)
-        });
+
+
 
     };
 
 
 
+    trivia();
 
-    questionFunction(2);
+
+    $(".button").on("click", function () {
+        console.log($(this).text())
+    })
+
+
 
 
 });
