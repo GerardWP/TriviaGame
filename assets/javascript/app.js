@@ -6,6 +6,7 @@ $(document).ready(function () {
             options: ["Sahara", "Antartica", "Kalahari Desert", "Gobi Desert"],
             correctOption: "Antartica",
             answer: "B: Antarctica! Located around the South Pole, Antarctica is the driest, windiest, and coldest continent on earth. The entirety of Antarctica is a desert - the continent receives less than 200mm of precipitation every year.",
+            imageURL: "qOneImage"
         },
         {
             number: "2",
@@ -114,9 +115,9 @@ $(document).ready(function () {
         if (timeLeft === 0 & questionAnswered === false) {
             clearInterval(displayCountdown);
             timeLeft = 10;
+            $("#answer-zone").addClass(questions[x].imageURL);
             $("#answer-info").text("Time is UP! The correct answer is " + questions[x].answer);
             $("#next-question").css('display', 'block');
-            x++;
             updateHTML();
         };
     };
@@ -127,7 +128,6 @@ $(document).ready(function () {
 
     function trivia() {
         $("#next-question").text("Next Question");
-        questionAnswered = false;
         startTimer()
 
         $("#question-display").text(questions[x].question);
@@ -142,11 +142,12 @@ $(document).ready(function () {
                 return
             } else if ($(this).text() === questions[x].correctOption) {
                 clearInterval(displayCountdown);
-                timeLeft = 10;
+                timeLeft = timeLeft;
                 $("#answer-info").text("Correct! The answer is " + questions[x].answer);
                 $("#next-question").css('display', 'block');
+                $("#answer-zone").addClass(questions[x].imageURL);
                 score++;
-                x++;
+
                 questionAnswered = true;
                 updateHTML();
                 if (x === 10) {
@@ -157,10 +158,10 @@ $(document).ready(function () {
 
             } else {
                 clearInterval(displayCountdown);
-                timeLeft = 10;
+                timeLeft = timeLeft;
                 $("#answer-info").text("Incorrect! The correct answer is " + questions[x].answer);
                 $("#next-question").css('display', 'block');
-                x++;
+                $("#answer-zone").addClass(questions[x].imageURL);
                 questionAnswered = true;
                 updateHTML();
                 if (x === 10) {
@@ -173,8 +174,13 @@ $(document).ready(function () {
         });
 
         $("#next-question").on("click", function () {
+            $("#answer-zone").removeClass(questions[x].imageURL);
+            x++
             $(this).css('display', 'none');
             $("#answer-info").empty();
+            timeLeft = 10;
+            questionAnswered = false;
+            updateHTML();
             trivia();
 
         });

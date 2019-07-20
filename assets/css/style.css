@@ -11,12 +11,17 @@ html {
 body {
     height: 100vh;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Darker Grotesque', sans-serif;
+    background: url(../images/143313.jpg) no-repeat center;
+    background-size: cover;
 }
 
 section {
     width: 95%;
-    margin: 50px auto;
+    margin: auto auto;
     display: flex;
     flex-flow: column nowrap;
 }
@@ -39,7 +44,7 @@ h3 {
     color: rgb(139, 255, 145);
 }
 
-.game-stats {
+#game-stats {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +60,7 @@ h3 {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    background: rgb(107, 107, 107);
+    /* background: rgb(107, 107, 107); */
     border-radius: 0px 0px 8px 8px;
     color: #fff;
 }
@@ -74,9 +79,10 @@ h3 {
     align-items: center;
     justify-content: center;
     border-radius: 0 0 0 8px;
-    background: linear-gradient(to top, rgb(82, 82, 82) 98%, rgb(17, 17, 17));
+    background: linear-gradient(to top, rgba(82, 82, 82, 0.671) 98%, rgb(17, 17, 17));
     font-weight: 400;
     letter-spacing: .03em;
+
 }
 
 #answer-zone {
@@ -87,7 +93,7 @@ h3 {
     font-weight: lighter;
     border-radius: 0 0 8px 0;
     padding: 15px;
-    background: linear-gradient(to top, rgb(58, 59, 61) 98%, rgb(17, 17, 17));
+    background: linear-gradient(to top, rgb(58, 59, 61, 0.671) 98%, rgb(17, 17, 17));
 }
 
 
@@ -115,4 +121,36 @@ button:hover {
 button#next-question {
     /* margin: 25px; */
     display: none;
+}
+
+.qOneImage {
+    background: url(../images/antarctic.jpg) no-repeat center !important;
+    background-size: cover !important;
+    /* opacity: .5; */
+}
+
+@media(max-width: 800px) {
+
+    body {
+        display: block;
+        padding-top: 30px;
+    }
+
+    #game-stats {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    #game-display {
+        flex-direction: column;
+    }
+
+    #question-zone {
+        border-radius: 0 0 0 0;
+    }
+
+    #answer-zone {
+        border-radius: 0 0 8px 8px;
+    }
+
 }
