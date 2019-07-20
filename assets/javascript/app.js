@@ -74,28 +74,7 @@ $(document).ready(function () {
 
     var count = 0;
     var correctAnswers = 0;
-    var wrongAnswers = 0;
 
-
-    var score = 0;
-
-    var backgroundDisplay = $("#trivia-section");
-
-    var answerImage = $("#answer-box");
-
-    var questionDisplay = $("#question");
-    var choiceA = $("#option-a");
-    var choiceB = $("#option-b");
-    var choiceC = $("#option-c");
-    var choiceD = $("#option-d");
-    var questionNumber = $("#question-number");
-    var questionsLeft = $("#questions-left")
-    var scoreText = $("#score");
-
-    var questionTimer;
-
-
-    // -------------------------------------------------
     // function for displaying countdown timer on document
 
     var timeLeft = 15;
@@ -120,92 +99,21 @@ $(document).ready(function () {
 
     // -------------------------------------------------
 
-    var questionsRemaining;
 
     function questionFunction(x) {
 
-        questionsRemaining = questions.length - count;
+        var answers = questions[x].options;
 
-        startTimer();
-
-        scoreText.html(correctAnswers + "/" + questions.length)
-        questionsLeft.html(questionsRemaining);
-        questionNumber.html(questions[x].number);
-
-        questionDisplay.html(questions[x].question);
-        choiceA.html(questions[x].options[0]);
-        choiceB.html(questions[x].options[1]);
-        choiceC.html(questions[x].options[2]);
-        choiceD.html(questions[x].options[3]);
-
-        console.log(questions[x].optionA);
-
-        questionTimer = setTimeout(function () {
-            console.log(questions[x].answer, count);
-        }, 3000);
-
-        count++
-
-
-
-        setTimeout(function () {
-            runQuestion();
-        }, 3000);
-
-
-        // clearTimeout(questionTimer);
+        answers.forEach(function (i) {
+            console.log(i)
+        });
 
     };
 
-    function runQuestion() {
-
-        if (count === 0) {
-            questionFunction(0);
-        } else if (count === 1) {
-            questionFunction(1);
-        } else if (count === 2) {
-            questionFunction(2);
-        } else if (count === 3) {
-            questionFunction(3);
-        } else if (count === 4) {
-            questionFunction(4);
-        } else if (count === 5) {
-            questionFunction(5);
-        } else if (count === 6) {
-            questionFunction(6);
-        } else if (count === 7) {
-            questionFunction(7);
-        } else if (count === 8) {
-            questionFunction(8);
-        } else if (count === 9) {
-            questionFunction(9);
-        } else if (count === 10) {
-            questionFunction(10);
-        } else {
-            setTimeout(function () {
-                console.log("END");
-            }, 1500);
-        }
 
 
-    }
 
-
-    function winScreen(x) {
-        // what happens when the question is answers correctly
-    }
-
-    function loseScreen(x) {
-        // what happens when the question is answers incorrectly
-    }
-
-    function timeUpScreen(x) {
-        // what happens when time runs out for question
-    }
-
-
-    runQuestion();
-
+    questionFunction(2);
 
 
 });
