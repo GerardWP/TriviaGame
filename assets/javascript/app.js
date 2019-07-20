@@ -5,7 +5,7 @@ $(document).ready(function () {
             question: "What is the largest desert in the world?",
             options: ["Sahara", "Antartica", "Kalahari Desert", "Gobi Desert"],
             correctOption: "Antartica",
-            answer: "B: Antarctica! Located around the South Pole, Antarctica is the driest, windiest, and coldest continent on earth. The entirety of Antarctica is a desert - the continent receives less than 200mm of precipitation every year."
+            answer: "B: Antarctica! Located around the South Pole, Antarctica is the driest, windiest, and coldest continent on earth. The entirety of Antarctica is a desert - the continent receives less than 200mm of precipitation every year.",
         },
         {
             number: "2",
@@ -72,18 +72,31 @@ $(document).ready(function () {
         }
     ];
 
-    var count = 0;
-    var correctAnswers = 0;
 
     var questionAnswered = false;
-    var timeLeft = 0;
     var x = 0;
 
+    var score = 0;
 
+
+    var timeDisplay = $("#display-number");
+    var scoreDisplay = $("#score");
+    var qRemaining = $("#questions-left");
+
+
+    function updateHTML() {
+        scoreDisplay.html(score);
+        qRemaining.html(questions.length - x);
+        timeDisplay.html("<h2>" + "Question Clock: " + timeLeft + "</h2>");
+    };
+
+    updateHTML();
+
+    timeDisplay.html("<h2>Question Clock: </h2>")
 
     // ---------------------
 
-    timeLeft = 15;
+    var timeLeft = 10;
     var displayCountdown;
 
 
@@ -96,55 +109,89 @@ $(document).ready(function () {
 
         timeLeft--;
 
-        $("#display-number").html("<h2>" + timeLeft + "</h2>");
+        timeDisplay.html("<h2>" + "Question Clock: " + timeLeft + "</h2>");
 
         if (timeLeft === 0 & questionAnswered === false) {
             clearInterval(displayCountdown);
-            timeLeft = 5;
-            $("#questions-display").empty();
-            x++
+            timeLeft = 10;
+            $("#answer-info").text("Time is UP! The correct answer is " + questions[x].answer);
+            $("#next-question").css('display', 'block');
+            x++;
+            updateHTML();
         };
     };
 
-    // startTimer()
+
 
     // -------------------
 
     function trivia() {
+        $("#next-question").text("Next Question");
+        questionAnswered = false;
+        startTimer()
 
-        var possibleAnswers = questions[x].options;
-        var displayQuestion = $("<h2>");
-
-        $("#questions-display").append(displayQuestion.text(questions[x].question));
+        $("#question-display").text(questions[x].question);
 
         $("#option-a").text(questions[x].options[0])
         $("#option-b").text(questions[x].options[1])
         $("#option-c").text(questions[x].options[2])
         $("#option-d").text(questions[x].options[3])
 
+        $(".button").on("click", function () {
+            if (questionAnswered) {
+                return
+            } else if ($(this).text() === questions[x].correctOption) {
+                clearInterval(displayCountdown);
+                timeLeft = 10;
+                $("#answer-info").text("Correct! The answer is " + questions[x].answer);
+                $("#next-question").css('display', 'block');
+                score++;
+                x++;
+                questionAnswered = true;
+                updateHTML();
+                if (x === 10) {
+                    $("#next-question").text("Play Again");
+                    x = 0;
+                    score = 0;
+                }
 
-        // possibleAnswers.forEach(function (i) {
-        //     var answerButtons = $('<button id="buttonId">');
-        //     answerButtons.text(i).appendTo($("#questions-display"));
-        // });
+            } else {
+                clearInterval(displayCountdown);
+                timeLeft = 10;
+                $("#answer-info").text("Incorrect! The correct answer is " + questions[x].answer);
+                $("#next-question").css('display', 'block');
+                x++;
+                questionAnswered = true;
+                updateHTML();
+                if (x === 10) {
+                    $("#next-question").text("Play Again");
+                    x = 0;
+                    score = 0;
+                }
+            }
 
-        // i tried the above code to generate my button text, and it worked, but the cick function would NOT respond to the buttons.
+        });
 
+        $("#next-question").on("click", function () {
+            $(this).css('display', 'none');
+            $("#answer-info").empty();
+            trivia();
 
+        });
 
 
     };
 
 
-
     trivia();
 
 
-    $(".button").on("click", function () {
-        console.log($(this).text())
-    })
-
-
-
-
 });
+// possibleAnswers.forEach(function (i) {
+//     var answerButtons = $('<button id="buttonId">');
+//     answerButtons.text(i).appendTo($("#questions-display"));
+// });
+
+// i tried the above code to generate my button text, and it worked, but the cick function would NOT respond to the buttons.
+
+// console.log(questions[x].answer)
